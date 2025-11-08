@@ -1,21 +1,31 @@
 {
   "name": "@repo/db",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "db:generate": "prisma generate",
+    "build": "tsc",
+    "db:generate": "prisma generate && pnpm run build",
     "db:migrate": "prisma migrate dev --skip-generate",
     "db:deploy": "prisma migrate deploy"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
-    "prisma": "^6.19.0"
+    "prisma": "^6.19.0",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "dotenv": "^17.2.3"
   },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    }
   }
 }
