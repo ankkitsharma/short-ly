@@ -3,6 +3,10 @@ import {config} from "dotenv";
 
 config();
 
+// Use process.env.DATABASE_URL with fallback for Docker builds
+// Prisma generation doesn't need a real DB connection, just a valid URL format
+const databaseUrl = process.env.DATABASE_URL || "postgresql://user:password@localhost:5432/dbname";
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
@@ -10,6 +14,6 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
-    url: env("DATABASE_URL"),
+    url: databaseUrl,
   },
 });
