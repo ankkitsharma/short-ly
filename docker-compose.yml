@@ -1,4 +1,16 @@
 services:
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      ./apps/web/.env.production
+    networks:
+      - app_network
   api:
     container_name: api
     build:
@@ -6,7 +18,7 @@ services:
       dockerfile: ./apps/api/Dockerfile
     restart: always
     ports:
-      - 3001:3001
+      -  "3001:3001"
     env_file:
       ./apps/api/.env
     networks:
