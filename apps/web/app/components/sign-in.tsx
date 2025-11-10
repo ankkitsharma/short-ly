@@ -24,7 +24,7 @@ export default function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
-    <Card className="max-w-md">
+    <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
         <CardDescription className="text-xs md:text-sm">
@@ -108,7 +108,7 @@ export default function SignIn() {
                 await signIn.social(
                   {
                     provider: 'google',
-                    callbackURL: '/dashboard',
+                    callbackURL: '/',
                   },
                   {
                     onRequest: () => {
@@ -146,6 +146,13 @@ export default function SignIn() {
               </svg>
               Sign in with Google
             </Button>
+          </div>
+
+          <div className="text-center text-sm">
+            Don't have an account?{' '}
+            <Link href="/sign-up" className="underline">
+              Sign up
+            </Link>
           </div>
         </div>
       </CardContent>
