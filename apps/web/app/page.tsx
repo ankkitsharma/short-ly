@@ -1,17 +1,18 @@
 import styles from './page.module.css';
-import { prisma } from '@repo/db';
 import { Button } from '@repo/ui/components/button';
-import SignIn from '@/app/components/sign-in';
-import { getSession } from '@/app/lib/auth-client';
+import { auth } from '@repo/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import HomeClient from '@/app/components/home-client';
 
 export default async function Home() {
-  // const user = await prisma.user.findFirst();
-  const { data: session } = await getSession();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   if (!session) {
     redirect('/sign-in');
   }
-  return <div className={styles.page}>hello world</div>;
+
+  return <HomeClient name={session.user.name} />;
 }

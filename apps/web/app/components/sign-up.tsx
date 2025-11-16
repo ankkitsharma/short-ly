@@ -13,7 +13,7 @@ import { Label } from '@repo/ui/components/label';
 import { useState } from 'react';
 import Image from 'next/image';
 import { Loader2, X } from 'lucide-react';
-import { signUp } from '@/app/lib/auth-client';
+import { signIn, signUp } from '@/app/lib/auth-client';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { cn } from '@repo/ui/lib/utils';
@@ -147,10 +147,10 @@ export default function SignUp() {
               className={cn('w-full gap-2')}
               disabled={loading}
               onClick={async () => {
-                await signUp.social(
+                await signIn.social(
                   {
                     provider: 'google',
-                    callbackURL: '/dashboard',
+                    callbackURL: '/',
                   },
                   {
                     onRequest: () => {
@@ -200,7 +200,7 @@ export default function SignUp() {
                 password,
                 name: `${firstName} ${lastName}`,
                 image: image ? await convertImageToBase64(image) : '',
-                callbackURL: '/dashboard',
+                callbackURL: '/',
                 fetchOptions: {
                   onResponse: () => {
                     setLoading(false);
@@ -212,7 +212,7 @@ export default function SignUp() {
                     toast.error(ctx.error.message);
                   },
                   onSuccess: async () => {
-                    router.push('/dashboard');
+                    router.push('/');
                   },
                 },
               });
