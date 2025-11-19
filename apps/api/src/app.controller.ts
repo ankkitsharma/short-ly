@@ -1,14 +1,14 @@
-import {Controller, Get} from '@nestjs/common';
-import {AppService} from './app.service.js';
-import {User} from "@repo/db";
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service.js';
+import { AllowAnonymous } from '@thallesp/nestjs-better-auth';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-   async greetUser(): Promise<string> {
-
+  @AllowAnonymous()
+  async greetUser(): Promise<string> {
     return await this.appService.greetUser();
   }
 }

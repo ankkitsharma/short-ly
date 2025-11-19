@@ -1,16 +1,18 @@
-import styles from "./page.module.css";
-import { prisma } from "@repo/db";
-import {Button} from "@repo/ui/components/button";
-
-// Force dynamic rendering to avoid prerendering issues during build
-export const dynamic = 'force-dynamic';
+import styles from './page.module.css';
+import { Button } from '@repo/ui/components/button';
+import { auth } from '@repo/auth';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import HomeClient from '@/app/components/home-client';
 
 export default async function Home() {
-    const user = await prisma.user.findFirst()
-    return (
-        <div className={styles.page}>
-            {user?.name ?? "No user added yet"}
-            <Button>Waddup?</Button>
-        </div>
-    );
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect('/sign-in');
+  }
+
+  return <HomeClient name={session.user.email} />;
 }
