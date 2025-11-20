@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@repo/ui/globals.css';
+import Navbar from './components/navbar';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -23,7 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${geistSans.variable} ${geistMono.variable} h-full `}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} h-full w-full `}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
