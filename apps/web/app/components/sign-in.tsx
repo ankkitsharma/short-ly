@@ -16,12 +16,14 @@ import { Loader2 } from 'lucide-react';
 import { signIn } from '@/app/lib/auth-client';
 import Link from 'next/link';
 import { cn } from '@repo/ui/lib/utils';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
 
   return (
     <Card className="w-full max-w-md">
@@ -91,6 +93,9 @@ export default function SignIn() {
                   },
                   onResponse: () => {
                     setLoading(false);
+                  },
+                  onSuccess: () => {
+                    router.push('/');
                   },
                 },
               );

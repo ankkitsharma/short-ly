@@ -14,5 +14,5 @@ export default async function Home() {
     redirect('/sign-in');
   }
 
-  return <HomeClient name={session.user.email} />;
+  return <></>;
 }

@@ -12,6 +12,7 @@ import {
 } from '@repo/ui/components/navigation-menu';
 import { Button } from '@repo/ui/components/button';
 import { ShoppingCart, User, Menu, X } from 'lucide-react';
+import { UserProfileButton } from './user-profile-button';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -152,10 +153,9 @@ export default function Navbar() {
             </Button>
 
             {/* Profile Button - Hidden on mobile, visible on desktop */}
-            <Button variant="ghost" size="icon" className="h-9 w-9 hidden md:flex">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Profile</span>
-            </Button>
+            <div className="hidden md:flex">
+              <UserProfileButton />
+            </div>
           </div>
         </div>
       </nav>
@@ -249,14 +249,9 @@ export default function Navbar() {
 
           {/* Mobile Menu Footer */}
           <div className="p-4 border-t">
-            <Button
-              variant="ghost"
-              className="w-full justify-start"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <User className="h-4 w-4 mr-2" />
-              Profile
-            </Button>
+            <div className="flex justify-center">
+              <UserProfileButton />
+            </div>
           </div>
         </div>
       </div>
