@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
             <ShoppingCart className="h-6 w-6" />
-            <span className="text-xl font-bold">E-Kart</span>
+            <span className="text-xl font-bold">short-ly</span>
           </Link>
 
           {/* Desktop Navigation Menu - Hidden on mobile */}
@@ -42,7 +42,7 @@ export default function Navbar() {
                             href="/"
                           >
                             <div className="mb-2 mt-4 text-lg font-medium">
-                              E-Kart Store
+                              short-ly
                             </div>
                             <p className="text-sm leading-tight text-muted-foreground">
                               Browse our collection of amazing products

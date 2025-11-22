@@ -1,5 +1,5 @@
 {
-  "name": "e-kart",
+  "name": "short-ly",
   "private": true,
   "scripts": {
     "build": "turbo run build",
