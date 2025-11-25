@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import '@repo/ui/globals.css';
 import Navbar from './components/navbar';
 import { AuthProvider } from './components/auth-provider';
+import { QueryProvider } from './providers/query-provider';
+import { Toaster } from 'sonner';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -26,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${geistSans.variable} ${geistMono.variable} h-full w-full `}>
-        <AuthProvider>
-          <Navbar />
-          {children}
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Toaster />
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );

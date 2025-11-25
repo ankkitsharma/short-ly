@@ -1,5 +1,3 @@
-import styles from './page.module.css';
-import { Button } from '@repo/ui/components/button';
 import { auth } from '@repo/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -14,5 +12,5 @@ export default async function Home() {
     redirect('/sign-in');
   }
 
-  return <></>;
+  return <HomeClient />;
 }

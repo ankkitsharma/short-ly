@@ -24,6 +24,7 @@ model User {
   updatedAt     DateTime  @default(now()) @updatedAt
   sessions      Session[]
   accounts      Account[]
+  urls          Url[]
 
   @@unique([email])
   @@map("user")
@@ -72,4 +73,29 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model Url {
+  id        String   @id @default(uuid())
+  shortCode String   @unique
+  originalUrl String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clicks    Click[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("url")
+}
+
+model Click {
+  id        String   @id @default(uuid())
+  urlId     String
+  url       Url      @relation(fields: [urlId], references: [id], onDelete: Cascade)
+  ipAddress String?
+  userAgent String?
+  referer   String?
+  createdAt DateTime @default(now())
+
+  @@map("click")
 }
