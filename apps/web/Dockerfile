@@ -38,6 +38,17 @@ RUN pnpm install
 # Build the project
 COPY --from=prepare /app/out/full/ .
 
+# Set production environment
+ENV NODE_ENV=production
+
+# Update Prisma schema to include Alpine Linux binary target
+RUN if [ -f packages/database/prisma/schema.prisma ]; then \
+    sed -i '/^generator client {/a\  binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]' packages/database/prisma/schema.prisma; \
+    fi
+
+# Generate Prisma client for Alpine Linux with correct binary target
+RUN pnpm turbo db:generate
+
 # Uncomment and use build args to enable remote caching
 # ARG TURBO_TEAM
 # ENV TURBO_TEAM=$TURBO_TEAM
@@ -59,5 +70,9 @@ USER nextjs
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
+
+# Copy Prisma generated client and query engine
+# Next.js standalone output should include this, but ensure it's available
+COPY --from=builder --chown=nextjs:nodejs /app/packages/database/generated ./packages/database/generated
 
 CMD node apps/web/server.js
