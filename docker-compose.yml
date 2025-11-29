@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: ./apps/web/Dockerfile
       args:
-        NEXT_PUBLIC_SERVER_URL: "http://localhost/api"
+        NEXT_PUBLIC_SERVER_URL: "https://shortly.ankitsh.cc/api"
     restart: always
     expose:
       - "3000"

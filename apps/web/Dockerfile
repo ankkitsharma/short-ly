@@ -33,7 +33,7 @@ ARG DATABASE_URL=postgresql://user:password@localhost:5432/dbname
 ENV DATABASE_URL=${DATABASE_URL}
 
 # Accept NEXT_PUBLIC_SERVER_URL as build argument (needed at build time for Next.js)
-ARG NEXT_PUBLIC_SERVER_URL=http://localhost/api
+ARG NEXT_PUBLIC_SERVER_URL=https://shortly.ankitsh.cc/api
 ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
 
 # First install the dependencies (as they change less often)
