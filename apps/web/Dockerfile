@@ -32,6 +32,10 @@ FROM base AS builder
 ARG DATABASE_URL=postgresql://user:password@localhost:5432/dbname
 ENV DATABASE_URL=${DATABASE_URL}
 
+# Accept NEXT_PUBLIC_SERVER_URL as build argument (needed at build time for Next.js)
+ARG NEXT_PUBLIC_SERVER_URL=http://localhost/api
+ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
+
 # First install the dependencies (as they change less often)
 COPY --from=prepare /app/out/json/ .
 RUN pnpm install
