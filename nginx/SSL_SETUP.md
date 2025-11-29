@@ -62,7 +62,7 @@ No manual changes needed - the configuration is already set up.
 
 3. **Get Let's Encrypt certificate** (staging first, recommended):
    ```bash
-   docker-compose run --rm certbot certonly --webroot \
+   docker-compose run --rm --entrypoint certbot certbot certonly --webroot \
      -w /var/www/certbot \
      -d shortly.ankitsh.cc \
      --email your-email@example.com \
@@ -70,6 +70,8 @@ No manual changes needed - the configuration is already set up.
      --no-eff-email \
      --staging
    ```
+   
+   **Important**: Use `--entrypoint ""` to override the default renewal entrypoint.
    
    Replace `your-email@example.com` with your actual email address.
 
@@ -84,14 +86,17 @@ No manual changes needed - the configuration is already set up.
 
 6. **Get production certificate** (after staging works):
    ```bash
-   docker-compose run --rm certbot certonly --webroot \
+   docker-compose run --rm --entrypoint certbot certbot certonly --webroot \
      -w /var/www/certbot \
      -d shortly.ankitsh.cc \
      --email your-email@example.com \
      --agree-tos \
-     --no-eff-email \
-     --force-renewal
+     --no-eff-email
    ```
+   
+   **Important**: Use `--entrypoint ""` to override the default renewal entrypoint.
+   
+   **Note**: Only use `--force-renewal` if you already have a certificate and want to replace it. For first-time setup, omit this flag.
 
 7. **Reload nginx**:
    ```bash
