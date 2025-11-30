@@ -26,11 +26,11 @@ export default function SignIn() {
   const router = useRouter();
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Sign In</CardTitle>
-        <CardDescription className="text-xs md:text-sm">
-          Enter your email below to login to your account
+    <Card className="w-full max-w-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+      <CardHeader className="pb-6">
+        <CardTitle className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Sign in</CardTitle>
+        <CardDescription className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          Enter your email to continue
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -79,7 +79,7 @@ export default function SignIn() {
 
           <Button
             type="submit"
-            className="w-full"
+            className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white font-medium"
             disabled={loading}
             onClick={async () => {
               await signIn.email(
@@ -101,7 +101,14 @@ export default function SignIn() {
               );
             }}
           >
-            {loading ? <Loader2 size={16} className="animate-spin" /> : <p> Login </p>}
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin mr-2" />
+                Signing in...
+              </>
+            ) : (
+              'Sign in'
+            )}
           </Button>
 
           <div className={cn('w-full gap-2 flex items-center', 'justify-between flex-col')}>

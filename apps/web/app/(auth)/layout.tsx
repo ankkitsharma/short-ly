@@ -10,5 +10,9 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="flex flex-col items-center justify-center h-full w-full px-4">{children}</div>;
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] w-full px-4 py-12">
+      <div className="w-full max-w-md">{children}</div>
+    </div>
+  );
 }

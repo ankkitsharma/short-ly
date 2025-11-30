@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
 } from '@repo/ui/components/navigation-menu';
 import { Button } from '@repo/ui/components/button';
-import { ShoppingCart, User, Menu, X } from 'lucide-react';
+import { User, Menu, X } from 'lucide-react';
 import { UserProfileButton } from './user-profile-button';
 
 export default function Navbar() {
@@ -19,12 +19,13 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 shrink-0">
-            <ShoppingCart className="h-6 w-6" />
-            <span className="text-xl font-bold">short-ly</span>
+            <span className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              short-ly
+            </span>
           </Link>
 
           {/* Desktop Navigation Menu - Hidden on mobile */}

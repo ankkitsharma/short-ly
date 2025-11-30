@@ -43,11 +43,11 @@ export default function SignUp() {
   };
 
   return (
-    <Card className="z-50 rounded-md rounded-t-none w-full max-w-md">
-      <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
-        <CardDescription className="text-xs md:text-sm">
-          Enter your information to create an account
+    <Card className="z-50 rounded-md rounded-t-none w-full max-w-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+      <CardHeader className="pb-6">
+        <CardTitle className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Sign up</CardTitle>
+        <CardDescription className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+          Create an account to get started
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -192,7 +192,7 @@ export default function SignUp() {
 
           <Button
             type="submit"
-            className="w-full"
+            className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white font-medium"
             disabled={loading}
             onClick={async () => {
               await signUp.email({
@@ -218,7 +218,14 @@ export default function SignUp() {
               });
             }}
           >
-            {loading ? <Loader2 size={16} className="animate-spin" /> : 'Create an account'}
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin mr-2" />
+                Creating account...
+              </>
+            ) : (
+              'Create account'
+            )}
           </Button>
 
           <div className="text-center text-sm">
