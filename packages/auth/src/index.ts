@@ -6,12 +6,14 @@ import { config } from 'dotenv';
 config();
 
 export const auth = betterAuth<BetterAuthOptions>({
-  // baseURL: process.env.AUTH_BASE_URL || 'http://localhost:3000',
-  // basePath: '/api/auth',
+  baseURL: process.env.AUTH_BASE_URL || 'http://localhost:3000',
+  basePath: '/api/auth',
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
-  trustedOrigins: [process.env.CORS_ORIGIN || ''],
+  trustedOrigins: process.env.CORS_ORIGIN
+    ? [process.env.CORS_ORIGIN]
+    : ['http://localhost:3000', 'http://localhost:3001'],
   emailAndPassword: {
     enabled: true,
     async sendResetPassword(data, request) {
@@ -20,8 +22,8 @@ export const auth = betterAuth<BetterAuthOptions>({
   },
   socialProviders: {
     google: {
-      clientId: '70054790053-te2fh84f63g4pgui5g2manqd60aa0q3l.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
   advanced: {
