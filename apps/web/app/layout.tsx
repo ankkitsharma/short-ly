@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import '@repo/ui/globals.css';
 import Navbar from './components/navbar';
 import { AuthProvider } from './components/auth-provider';
@@ -28,6 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`${geistSans.variable} ${geistMono.variable} h-full w-full `}>
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="bee06ba3-49c5-4482-ac36-23b77c17a0f7"
+        />
         <QueryProvider>
           <AuthProvider>
             <Navbar />

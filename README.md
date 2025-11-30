@@ -1,135 +1,214 @@
-# Turborepo starter
+# Short-ly
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, full-stack URL shortener service built with Next.js and NestJS. Create short, memorable links and track their performance with detailed analytics.
 
-## Using this example
+🌐 **Live Demo**: [https://shortly.ankitsh.cc/](https://shortly.ankitsh.cc/)
 
-Run the following command:
+## Overview
 
-```sh
-npx create-turbo@latest
-```
+Short-ly is a URL shortening service that allows users to:
+- Create short, shareable links from long URLs
+- Use custom short codes for branded links
+- Track click analytics including IP address, user agent, and referer
+- Manage all their shortened URLs in a personal dashboard
+- Secure authentication with user accounts
 
-## What's inside?
+## Tech Stack
 
-This Turborepo includes the following packages/apps:
+### Frontend
+- **Next.js 16** - React framework with App Router
+- **React 19** - UI library
+- **TypeScript** - Type safety
+- **TanStack Query** - Data fetching and caching
+- **Better Auth** - Authentication
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI components
 
-### Apps and Packages
+### Backend
+- **NestJS** - Node.js framework
+- **Prisma** - Database ORM
+- **PostgreSQL** - Database
+- **Better Auth** - Authentication
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Infrastructure
+- **Turborepo** - Monorepo build system
+- **Docker** - Containerization
+- **Nginx** - Reverse proxy
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Project Structure
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+This is a Turborepo monorepo containing the following packages and apps:
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+short-ly/
+├── apps/
+│   ├── api/          # NestJS backend API
+│   └── web/          # Next.js frontend application
+├── packages/
+│   ├── auth/         # Shared authentication utilities
+│   ├── database/     # Prisma schema and database client
+│   ├── ui/           # Shared UI components
+│   ├── eslint-config/    # Shared ESLint configurations
+│   └── typescript-config/ # Shared TypeScript configurations
 ```
 
-### Develop
+## Features
 
-To develop all apps and packages, run the following command:
+### 🔗 URL Shortening
+- Generate short, unique codes automatically
+- Create custom short codes for branded links
+- Validate URLs before shortening
+- Automatic collision detection for short codes
 
-```
-cd my-turborepo
+### 📊 Analytics
+- Track total click count per shortened URL
+- Record click details:
+  - IP address
+  - User agent
+  - Referer
+  - Timestamp
+- View click history for each URL
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+### 👤 User Management
+- User authentication with email/password
+- Secure session management
+- Personal dashboard to view all shortened URLs
+- User-specific URL management
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+### 🎨 Modern UI
+- Clean, responsive design
+- Real-time updates
+- Toast notifications
+- Accessible components
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Getting Started
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### Prerequisites
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+- Node.js >= 18
+- pnpm >= 9.0.0
+- PostgreSQL database
+- Docker (optional, for containerized deployment)
 
-### Remote Caching
+### Installation
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd short-ly
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+2. Install dependencies:
+```bash
+pnpm install
 ```
 
-## Useful Links
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
 
-Learn more about the power of Turborepo:
+Edit `.env` with your configuration:
+- `DATABASE_URL` - PostgreSQL connection string
+- `BETTER_AUTH_SECRET` - Secret key for authentication
+- `BETTER_AUTH_URL` - Base URL for authentication
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+4. Set up the database:
+```bash
+cd packages/database
+pnpm prisma migrate dev
+pnpm prisma generate
+```
+
+5. Start the development servers:
+```bash
+# From the root directory
+pnpm dev
+```
+
+This will start:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001 (or configured port)
+
+## Development
+
+### Available Scripts
+
+From the root directory:
+
+- `pnpm dev` - Start all apps in development mode
+- `pnpm build` - Build all apps and packages
+- `pnpm lint` - Lint all code
+- `pnpm format` - Format code with Prettier
+- `pnpm check-types` - Type check all TypeScript code
+
+### Running Specific Apps
+
+You can run specific apps using Turborepo filters:
+
+```bash
+# Run only the web app
+pnpm dev --filter=web
+
+# Run only the API
+pnpm dev --filter=api
+
+# Build only the web app
+pnpm build --filter=web
+```
+
+## Deployment
+
+The project includes Docker configuration for containerized deployment:
+
+```bash
+# Build and start with Docker Compose
+docker-compose up -d
+```
+
+See `docker-compose.yml` and individual `Dockerfile`s in each app directory for deployment configuration.
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/sign-up` - Create a new user account
+- `POST /api/auth/sign-in` - Sign in to an existing account
+- `POST /api/auth/sign-out` - Sign out
+
+### URLs
+- `POST /urls` - Create a new shortened URL
+  - Body: `{ originalUrl: string, shortCode?: string }`
+- `GET /urls` - Get all URLs for the authenticated user
+- `GET /urls/:shortCode` - Redirect to original URL (tracks click)
+
+## Database Schema
+
+The application uses PostgreSQL with the following main models:
+
+- **User** - User accounts
+- **Url** - Shortened URLs with short codes
+- **Click** - Click tracking data
+- **Session** - User sessions
+- **Account** - Authentication accounts
+
+See `packages/database/prisma/schema.prisma` for the complete schema.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is private and unlicensed.
+
+## Author
+
+Built by [Ankit Sharma](https://ankitsh.cc)
+
+---
+
+For more information about Turborepo, see the [Turborepo documentation](https://turborepo.com/docs).
