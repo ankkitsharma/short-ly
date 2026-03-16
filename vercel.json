@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "apps/api/dist/main.js": {
-      "includeFiles": "packages/database/dist/generated/prisma/**"
-    }
-  }
-}
