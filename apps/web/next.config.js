@@ -8,7 +8,7 @@ const nextConfig = {
   output: 'standalone',
   outputFileTracingRoot: path.join(__dirname, '../../'),
   outputFileTracingIncludes: {
-    '/**': ['../../packages/database/dist/generated/prisma/**'],
+    '/**': ['packages/database/dist/generated/prisma/**'],
   },
 };
 
