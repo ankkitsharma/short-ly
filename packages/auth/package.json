@@ -6,12 +6,8 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./src/index.ts"
-    },
-    "./*": {
-      "types": "./dist/*.d.ts",
-      "default": "./src/*.ts"
+      "types": "./dist/auth/src/index.d.ts",
+      "default": "./dist/auth/src/index.js"
     }
   },
   "type": "module",
