@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
+import { error } from 'console';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -13,4 +14,6 @@ async function bootstrap() {
   });
   await app.listen(process.env.PORT ?? 3001);
 }
-bootstrap();
+bootstrap().catch((error) => {
+  console.log('error in bootstrapping nestjs: ', error);
+});
