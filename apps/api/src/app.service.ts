@@ -8,7 +8,7 @@ export class AppService {
     let greeting = 'No user found';
 
     if (user) {
-      greeting = `Hello ${user.name}`;
+      greeting = `Hello  ${user.name}`;
     }
 
     return greeting;
